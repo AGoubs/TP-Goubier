@@ -9,17 +9,32 @@ import com.goubier.movie.presentation.detail.DetailFragment
 import com.goubier.movie.presentation.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private var container2: FragmentContainerView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
+
+        container2 = findViewById(R.id.fragment_container2)
 
         supportFragmentManager.commit {
             add(R.id.fragment_container, SearchFragment())
         }
 
-        findViewById<FragmentContainerView>(R.id.fragment_container2)?.let {
+    }
+
+    fun displayMovieDetail(id: String) {
+
+        if (container2 != null) {
             supportFragmentManager.commit {
-                add(R.id.fragment_container2, DetailFragment())
+                replace(R.id.fragment_container2, DetailFragment.newInstance(id))
+            }
+        } else {
+            supportFragmentManager.commit {
+                replace(R.id.fragment_container, DetailFragment.newInstance(id))
+                addToBackStack(null)
             }
         }
     }
