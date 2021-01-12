@@ -8,5 +8,4 @@ data class MovieDetail (
         val poster: String,
         val director: String,
         val actors: String,
-        val metascore: String,
 )

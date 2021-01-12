@@ -7,14 +7,14 @@ import com.goubier.movie.data.database.model.Bookmark
 interface BookmarkDao {
 
     @Query("SELECT * FROM bookmark")
-    fun getAllBookmark(): List<Bookmark>
+    suspend fun getAllBookmark(): List<Bookmark>
 
     @Query("SELECT * FROM bookmark WHERE id = :id")
-    fun getBookmark(id: String): Bookmark
+    suspend fun getBookmark(id: String): Bookmark
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addBookmark(bookmark: Bookmark)
+    suspend fun addBookmark(bookmark: Bookmark)
 
     @Delete
-    fun deleteBookmark(bookmark: Bookmark)
+    suspend fun deleteBookmark(bookmark: Bookmark)
 }

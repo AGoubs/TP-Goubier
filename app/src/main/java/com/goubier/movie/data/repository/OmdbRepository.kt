@@ -39,5 +39,4 @@ fun OmdbMovieDetail.toMovieDetail() = MovieDetail(
     this.poster,
     this.director,
     this.actors,
-    this.metascore
 )

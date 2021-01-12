@@ -53,21 +53,12 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintTop_toBottomOf="@id/director_detail" />
 
-    <TextView
-        android:id="@+id/metascore_detail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintTop_toBottomOf="@id/actors_detail" />
-
-
     <Button
         android:id="@+id/fragment_movie_detail_button_bookmark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/actors_detail"/>
+        android:text="Ajouter au favori"
+        app:layout_constraintTop_toBottomOf="@id/actors_detail"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"

@@ -21,7 +21,6 @@ class DetailFragment : Fragment() {
     private lateinit var descriptionDetail: TextView
     private lateinit var directorDetail: TextView
     private lateinit var actorsDetail: TextView
-    private lateinit var metascoreDetail: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var image: ImageView
 
@@ -58,7 +57,6 @@ class DetailFragment : Fragment() {
         descriptionDetail = view.findViewById(R.id.description_detail)
         directorDetail = view.findViewById(R.id.director_detail)
         actorsDetail = view.findViewById(R.id.actors_detail)
-        metascoreDetail = view.findViewById(R.id.metascore_detail)
         progressBar = view.findViewById(R.id.progress_bar)
         image = view.findViewById(R.id.poster_detail)
 
