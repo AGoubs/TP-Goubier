@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso
 class DetailFragment : Fragment() {
 
     private lateinit var titreDetail: TextView
+    private lateinit var bookmark: Button
     private lateinit var descriptionDetail: TextView
     private lateinit var directorDetail: TextView
     private lateinit var actorsDetail: TextView
@@ -53,12 +54,15 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         titreDetail = view.findViewById(R.id.titre_detail)
+        bookmark = view.findViewById(R.id.fragment_movie_detail_button_bookmark)
         descriptionDetail = view.findViewById(R.id.description_detail)
         directorDetail = view.findViewById(R.id.director_detail)
         actorsDetail = view.findViewById(R.id.actors_detail)
         metascoreDetail = view.findViewById(R.id.metascore_detail)
         progressBar = view.findViewById(R.id.progress_bar)
         image = view.findViewById(R.id.poster_detail)
+
+
 
         viewModel.state.observe(viewLifecycleOwner, ::updateState)
 
@@ -71,9 +75,13 @@ class DetailFragment : Fragment() {
         when (state) {
             is DetailState.ErrorState -> {
                 Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+
+                bookmark.setOnClickListener(null)
             }
             is DetailState.LoadingState -> {
                 progressBar.isVisible = true
+
+                bookmark.setOnClickListener(null)
             }
             is DetailState.SuccessState -> {
                 progressBar.isVisible = false
@@ -83,6 +91,10 @@ class DetailFragment : Fragment() {
                 actorsDetail.text = state.movie.actors
                 if (state.movie.poster.isNotEmpty() && state.movie.poster.isNotBlank()) {
                     Picasso.get().load(state.movie.poster).into(image)
+                }
+
+                bookmark.setOnClickListener{
+                    viewModel.addBookmark(state.movie)
                 }
             }
         }
